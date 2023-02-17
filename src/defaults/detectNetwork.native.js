@@ -12,6 +12,7 @@ class DetectNetwork {
 
     this._init();
     this._addListeners();
+    console.log("In: DetectNetwork");
   }
 
   /**
@@ -145,5 +146,9 @@ class DetectNetwork {
 }
 
 const isLegacy = typeof NetInfo.getConnectionInfo === 'undefined';
-export default callback =>
+export default callback => {
+  debugger;
   isLegacy ? new LegacyDetectNetwork(callback) : new DetectNetwork(callback);
+  return isLegacy;
+
+}

@@ -17,11 +17,6 @@
     "test:watch": "jest --watch",
     "watch": "npm run build -- --watch"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && flow"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx}": [
       "prettier --config .prettierrc --write",

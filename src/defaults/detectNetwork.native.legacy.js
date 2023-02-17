@@ -11,6 +11,7 @@ class LegacyDetectNetwork {
 
     this._init();
     this._addListeners();
+    console.log("In: LegacyDetectNetwork");
   }
 
   /**
