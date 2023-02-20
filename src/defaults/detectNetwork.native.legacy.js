@@ -1,5 +1,6 @@
 /* eslint no-underscore-dangle: 0 */
-import { AppState, NetInfo } from '@react-native-community/netinfo'; // eslint-disable-line
+import NetInfo from '@react-native-community/netinfo'; // eslint-disable-line
+import AppState from '@react-native-community/netinfo'; // eslint-disable-line
 
 class LegacyDetectNetwork {
   constructor(callback) {
@@ -11,7 +12,7 @@ class LegacyDetectNetwork {
 
     this._init();
     this._addListeners();
-    console.log("In: LegacyDetectNetwork");
+    console.log('In: LegacyDetectNetwork');
   }
 
   /**
@@ -120,11 +121,11 @@ class LegacyDetectNetwork {
    * @private
    */
   _addListeners() {
-    NetInfo.addEventListener('change', reach => {
+    NetInfo.addEventListener(reach => {
       this._setShouldInitUpdateReach(false);
       this._update(reach);
     });
-    AppState.addEventListener('change', async () => {
+    AppState.addEventListener(async () => {
       this._setShouldInitUpdateReach(false);
       const reach = await NetInfo.fetch();
       this._update(reach);

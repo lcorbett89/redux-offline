@@ -1,5 +1,6 @@
 /* eslint no-underscore-dangle: 0 */
-import { AppState, NetInfo } from '@react-native-community/netinfo'; // eslint-disable-line
+import NetInfo from '@react-native-community/netinfo'; // eslint-disable-line
+import AppState from '@react-native-community/netinfo'; // eslint-disable-line
 import LegacyDetectNetwork from './detectNetwork.native.legacy';
 
 class DetectNetwork {
@@ -116,13 +117,13 @@ class DetectNetwork {
    * @private
    */
   _addListeners() {
-    NetInfo.addEventListener('connectionChange', connectionInfo => {
+    NetInfo.addEventListener(connectionInfo => {
       this._setShouldInitUpdateReach(false);
       this._update(connectionInfo.type);
     });
-    AppState.addEventListener('change', async () => {
+    AppState.addEventListener(async () => {
       this._setShouldInitUpdateReach(false);
-      const connectionInfo = await NetInfo.getConnectionInfo();
+      const connectionInfo = await NetInfo.fetch();
       this._update(connectionInfo.type);
     });
   }
@@ -145,7 +146,7 @@ class DetectNetwork {
   };
 }
 
-const isLegacy = typeof NetInfo.getConnectionInfo === 'undefined';
+const isLegacy = typeof NetInfo.fetch === 'undefined';
 export default callback => {
   isLegacy ? new LegacyDetectNetwork(callback) : new DetectNetwork(callback);
   return isLegacy;
